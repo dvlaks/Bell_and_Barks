@@ -1,0 +1,97 @@
+name: Automated Project Backup
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM
+  workflow_dispatch:  # Manual trigger
+  push:
+    branches: [ main, develop ]
+    tags: [ 'v*' ]
+
+jobs:
+  backup-project-state:
+    runs-on: ubuntu-latest
+    name: Create Project State Backup
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run health check
+      run: |
+        npm run build
+        npm run test:ci
+        
+    - name: Create backup metadata
+      run: |
+        echo "# Bell & Barks Project Backup" > BACKUP_INFO.md
+        echo "Backup Date: $(date)" >> BACKUP_INFO.md
+        echo "Commit Hash: ${{ github.sha }}" >> BACKUP_INFO.md
+        echo "Branch: ${{ github.ref_name }}" >> BACKUP_INFO.md
+        echo "Workflow: ${{ github.workflow }}" >> BACKUP_INFO.md
+        echo "" >> BACKUP_INFO.md
+        echo "## Package Versions" >> BACKUP_INFO.md
+        npm list --depth=0 >> BACKUP_INFO.md
+        
+    - name: Archive project state
+      run: |
+        tar -czf bell-and-barks-backup-$(date +%Y%m%d-%H%M%S).tar.gz \
+          --exclude=node_modules \
+          --exclude=dist \
+          --exclude=.git \
+          .
+          
+    - name: Upload backup artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: bell-and-barks-backup-${{ github.sha }}
+        path: |
+          bell-and-barks-backup-*.tar.gz
+          BACKUP_INFO.md
+        retention-days: 90
+        
+    - name: Create release for major versions
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          bell-and-barks-backup-*.tar.gz
+          BACKUP_INFO.md
+        body: |
+          🚀 **Bell & Barks Version ${{ github.ref_name }}**
+          
+          Automated backup of Bell & Barks platform state.
+          
+          **What's Included:**
+          - Complete source code
+          - Configuration files
+          - Documentation
+          - Package dependencies info
+          
+          **Recovery Instructions:**
+          1. Download backup archive
+          2. Extract to project directory
+          3. Run `npm install`
+          4. Run `npm run dev`
+          
+          **Commit:** ${{ github.sha }}
+          **Date:** $(date)
+        draft: false
+        prerelease: false
+        
+    - name: Notify backup completion
+      if: always()
+      run: |
+        echo "Backup completed for commit ${{ github.sha }}"
+        echo "Status: ${{ job.status }}"
