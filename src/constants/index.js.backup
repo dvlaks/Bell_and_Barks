@@ -1,0 +1,195 @@
+// Pet Categories for Bell & Barks
+const petCategories = [
+  {
+    name: "Dogs",
+    color: "brown",
+    rotation: "md:rotate-[-8deg] rotate-0",
+    description: "Loyal companions for every family",
+    priceRange: "$200 - $2,500",
+    pets: [
+      { name: "Golden Retriever", age: "2 years", price: "$800", image: "/images/p1.png", description: "Friendly family dog" },
+      { name: "German Shepherd", age: "1 year", price: "$1200", image: "/images/p2.png", description: "Intelligent guardian" },
+      { name: "Labrador", age: "3 years", price: "$700", image: "/images/p3.png", description: "Gentle and playful" },
+      { name: "Beagle", age: "2 years", price: "$600", image: "/images/p4.png", description: "Small but energetic" },
+      { name: "Bulldog", age: "4 years", price: "$1500", image: "/images/p5.png", description: "Calm companion" },
+      { name: "Poodle", age: "1 year", price: "$900", image: "/images/p6.png", description: "Hypoallergenic friend" }
+    ]
+  },
+  {
+    name: "Cats",
+    color: "red",
+    rotation: "md:rotate-[8deg] rotate-0",
+    description: "Independent and loving feline friends",
+    priceRange: "$100 - $1,800",
+    pets: [
+      { name: "Persian Cat", age: "2 years", price: "$1200", image: "/images/p1.png", description: "Elegant long-haired beauty" },
+      { name: "Maine Coon", age: "1 year", price: "$1000", image: "/images/p2.png", description: "Large gentle giant" },
+      { name: "British Shorthair", age: "3 years", price: "$800", image: "/images/p3.png", description: "Calm and affectionate" },
+      { name: "Siamese", age: "2 years", price: "$600", image: "/images/p4.png", description: "Vocal and social" },
+      { name: "Ragdoll", age: "1 year", price: "$1100", image: "/images/p5.png", description: "Docile and relaxed" },
+      { name: "Scottish Fold", age: "2 years", price: "$900", image: "/images/p6.png", description: "Sweet-natured companion" }
+    ]
+  },
+  {
+    name: "Birds",
+    color: "blue",
+    rotation: "md:rotate-[-8deg] rotate-0",
+    description: "Colorful and intelligent avian companions",
+    priceRange: "$50 - $3,000",
+    pets: [
+      { name: "Cockatiel", age: "1 year", price: "$150", image: "/images/p1.png", description: "Cheerful whistler" },
+      { name: "African Grey", age: "3 years", price: "$2500", image: "/images/p2.png", description: "Highly intelligent talker" },
+      { name: "Budgerigar", age: "6 months", price: "$50", image: "/images/p3.png", description: "Small colorful friend" },
+      { name: "Canary", age: "1 year", price: "$80", image: "/images/p4.png", description: "Beautiful songbird" },
+      { name: "Lovebird", age: "8 months", price: "$120", image: "/images/p5.png", description: "Affectionate pair bird" },
+      { name: "Conure", age: "2 years", price: "$400", image: "/images/p6.png", description: "Playful and energetic" }
+    ]
+  },
+  {
+    name: "Fish",
+    color: "orange",
+    rotation: "md:rotate-[8deg] rotate-0",
+    description: "Peaceful aquatic pets for any space",
+    priceRange: "$5 - $500",
+    pets: [
+      { name: "Betta Fish", age: "6 months", price: "$15", image: "/images/p1.png", description: "Vibrant solo swimmer" },
+      { name: "Goldfish", age: "1 year", price: "$8", image: "/images/p2.png", description: "Classic pond fish" },
+      { name: "Angelfish", age: "8 months", price: "$25", image: "/images/p3.png", description: "Elegant tropical fish" },
+      { name: "Discus Fish", age: "1 year", price: "$150", image: "/images/p4.png", description: "King of aquarium fish" },
+      { name: "Neon Tetra", age: "4 months", price: "$5", image: "/images/p5.png", description: "Schooling beauty" },
+      { name: "Koi Fish", age: "2 years", price: "$300", image: "/images/p6.png", description: "Ornamental pond fish" }
+    ]
+  },
+  {
+    name: "Rabbits",
+    color: "white",
+    rotation: "md:rotate-[-8deg] rotate-0",
+    description: "Gentle and playful furry friends",
+    priceRange: "$75 - $400",
+    pets: [
+      { name: "Holland Lop", age: "8 months", price: "$200", image: "/images/p1.png", description: "Compact with floppy ears" },
+      { name: "Netherland Dwarf", age: "6 months", price: "$150", image: "/images/p2.png", description: "Tiny and adorable" },
+      { name: "Lionhead Rabbit", age: "1 year", price: "$180", image: "/images/p3.png", description: "Fluffy mane beauty" },
+      { name: "Mini Rex", age: "7 months", price: "$160", image: "/images/p4.png", description: "Velvet-soft fur" },
+      { name: "English Angora", age: "1 year", price: "$250", image: "/images/p5.png", description: "Long silky coat" },
+      { name: "Flemish Giant", age: "2 years", price: "$300", image: "/images/p6.png", description: "Gentle giant rabbit" }
+    ]
+  },
+  {
+    name: "Reptiles",
+    color: "black",
+    rotation: "md:rotate-[8deg] rotate-0",
+    description: "Exotic and fascinating scaled companions",
+    priceRange: "$100 - $1,200",
+    pets: [
+      { name: "Bearded Dragon", age: "1 year", price: "$200", image: "/images/p1.png", description: "Docile and friendly" },
+      { name: "Ball Python", age: "2 years", price: "$150", image: "/images/p2.png", description: "Calm constrictor" },
+      { name: "Leopard Gecko", age: "8 months", price: "$100", image: "/images/p3.png", description: "Easy-care gecko" },
+      { name: "Blue-Tongue Skink", age: "1 year", price: "$300", image: "/images/p4.png", description: "Unique blue tongue" },
+      { name: "Corn Snake", age: "1 year", price: "$120", image: "/images/p5.png", description: "Colorful and gentle" },
+      { name: "Iguana", age: "3 years", price: "$250", image: "/images/p6.png", description: "Impressive herbivore" }
+    ]
+  },
+];
+
+// Legacy flavor data for reference (will be removed in Phase 2)
+const flavorlists = [
+  {
+    name: "Chocolate Milk",
+    color: "brown",
+    rotation: "md:rotate-[-8deg] rotate-0",
+  },
+  {
+    name: "Stawberry Milk",
+    color: "red",
+    rotation: "md:rotate-[8deg] rotate-0",
+  },
+  {
+    name: "Cookies & Cream",
+    color: "blue",
+    rotation: "md:rotate-[-8deg] rotate-0",
+  },
+  {
+    name: "Peanut Butter Chocolate",
+    color: "orange",
+    rotation: "md:rotate-[8deg] rotate-0",
+  },
+  {
+    name: "Vanilla Milkshake",
+    color: "white",
+    rotation: "md:rotate-[-8deg] rotate-0",
+  },
+  {
+    name: "Max Chocolate Milk",
+    color: "black",
+    rotation: "md:rotate-[8deg] rotate-0",
+  },
+];
+
+const petBenefits = [
+  { label: "Companionship", amount: "24/7" },
+  { label: "Exercise", amount: "Daily" },
+  { label: "Stress Relief", amount: "100%" },
+  { label: "Love", amount: "Endless" },
+  { label: "Loyalty", amount: "Forever" },
+];
+
+const nutrientLists = [
+  { label: "Potassium", amount: "245mg" },
+  { label: "Calcium", amount: "500mg" },
+  { label: "Vitamin A", amount: "176mcg" },
+  { label: "Vitamin D", amount: "5mcg" },
+  { label: "Iron", amount: "1mg" },
+];
+
+const cards = [
+  {
+    src: "/videos/f1.mp4",
+    rotation: "rotate-z-[-10deg]",
+    name: "Madison",
+    img: "/images/p1.png",
+    translation: "translate-y-[-5%]",
+  },
+  {
+    src: "/videos/f2.mp4",
+    rotation: "rotate-z-[4deg]",
+    name: "Alexander",
+    img: "/images/p2.png",
+  },
+  {
+    src: "/videos/f3.mp4",
+    rotation: "rotate-z-[-4deg]",
+    name: "Andrew",
+    img: "/images/p3.png",
+    translation: "translate-y-[-5%]",
+  },
+  {
+    src: "/videos/f4.mp4",
+    rotation: "rotate-z-[4deg]",
+    name: "Bryan",
+    img: "/images/p4.png",
+    translation: "translate-y-[5%]",
+  },
+  {
+    src: "/videos/f5.mp4",
+    rotation: "rotate-z-[-10deg]",
+    name: "Chris",
+    img: "/images/p5.png",
+  },
+  {
+    src: "/videos/f6.mp4",
+    rotation: "rotate-z-[4deg]",
+    name: "Devante",
+    img: "/images/p6.png",
+    translation: "translate-y-[5%]",
+  },
+  {
+    src: "/videos/f7.mp4",
+    rotation: "rotate-z-[-3deg]",
+    name: "Melisa",
+    img: "/images/p7.png",
+    translation: "translate-y-[10%]",
+  },
+];
+
+export { petCategories, petBenefits, flavorlists, nutrientLists, cards };

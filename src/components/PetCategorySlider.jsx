@@ -67,53 +67,92 @@ const PetCategorySlider = () => {
   return (
     <div ref={sliderRef} className="slider-wrapper">
       <div className="pet-categories">
-        {petCategories.map((pet) => (
-          <Link
-            key={pet.name}
-            to={`/pets/${pet.name.toLowerCase()}`}
-            className={`relative z-30 lg:w-[50vw] w-96 lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none ${pet.rotation} cursor-pointer group transition-transform hover:scale-105 block`}
-          >
-            {/* Background */}
-            <img
-              src={`/images/${pet.color}-bg.svg`}
-              alt=""
-              className="absolute bottom-0"
-            />
+        {petCategories.map((pet, index) => {
+          // Map each category to its corresponding image
+          const getImagePath = (categoryName) => {
+            switch(categoryName.toLowerCase()) {
+              case 'dogs': return '/images/dog.jpg';
+              case 'cats': return '/images/cat.jpg';
+              case 'birds': return '/images/Birds.jpg';
+              case 'fish': return '/images/Fish.jpg';
+              case 'rabbits': return '/images/Rabbit - Copy.jpg';
+              case 'reptiles': return '/images/Reptiles.jpg';
+              default: return '/images/dog.jpg'; // fallback to dog image
+            }
+          };
 
-            {/* Pet Image Placeholder - Will be replaced with actual pet images */}
-            <img
-              src={`/images/${pet.color}-drink.webp`}
-              alt={pet.name}
-              className="drinks"
-            />
+          return (
+            <div
+              key={pet.name}
+              className={`relative lg:w-[50vw] w-96 lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none ${pet.rotation} overflow-hidden rounded-3xl border-4 border-white/20 backdrop-blur-sm shadow-2xl`}
+            >
+              <Link
+                to={`/pets/${pet.name.toLowerCase()}`}
+                className="block w-full h-full cursor-pointer group transition-all duration-500 hover:scale-[1.02] relative"
+              >
+                {/* Background Layer */}
+                <div className="absolute inset-0 z-0">
+                  <img
+                    src={`/images/${pet.color}-bg.svg`}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-            {/* Pet Elements/Accessories */}
-            <img
-              src={`/images/${pet.color}-elements.webp`}
-              alt=""
-              className="elements"
-            />
+                {/* Pet Image Container - Properly contained within card */}
+                <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden">
+                  <img
+                    src={getImagePath(pet.name)}
+                    alt={pet.name}
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
+                </div>
 
-            {/* Pet Category Name */}
-            <h1 className="absolute md:bottom-10 md:left-10 bottom-5 left-5 text-milk md:text-6xl text-3xl font-semibold uppercase tracking-tighter">
-              {pet.name}
-            </h1>
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20"></div>
 
-            {/* Price Range - New Feature */}
-            <div className="absolute top-5 right-5 bg-milk/90 backdrop-blur-sm rounded-full px-4 py-2">
-              <p className="text-dark-brown font-semibold text-sm md:text-base">
-                {pet.priceRange}
-              </p>
+                {/* Pet Elements/Accessories */}
+                <div className="absolute inset-0 z-30">
+                  <img
+                    src={`/images/${pet.color}-elements.webp`}
+                    alt=""
+                    className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </div>
+
+                {/* Content Layer */}
+                <div className="absolute inset-0 z-40 flex flex-col justify-between p-6 md:p-8">
+                  {/* Price Range Badge */}
+                  <div className="self-end">
+                    <div className="bg-white/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+                      <p className="text-dark-brown font-bold text-sm md:text-base whitespace-nowrap">
+                        {pet.priceRange}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bottom Content */}
+                  <div className="space-y-3">
+                    {/* Pet Category Name */}
+                    <h1 className="text-white drop-shadow-2xl text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-tight">
+                      {pet.name}
+                    </h1>
+
+                    {/* Description - Always visible on mobile, hover on desktop */}
+                    <div className="md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 transform md:translate-y-4 md:group-hover:translate-y-0">
+                      <p className="text-white/90 text-sm md:text-base font-medium bg-black/40 backdrop-blur-sm rounded-xl p-4 leading-relaxed border border-white/20">
+                        {pet.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hover effect overlay */}
+                <div className="absolute inset-0 z-50 bg-gradient-to-t from-transparent via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              </Link>
             </div>
-
-            {/* Description - Appears on Hover */}
-            <div className="absolute bottom-20 left-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <p className="text-milk text-sm md:text-base font-paragraph bg-dark-brown/80 backdrop-blur-sm rounded-lg p-3">
-                {pet.description}
-              </p>
-            </div>
-          </Link>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
