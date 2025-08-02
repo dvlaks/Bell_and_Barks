@@ -11,7 +11,10 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "analyze": "npm run build && echo '=== Bundle Analysis ===' && ls -la dist/assets/ && echo '=== Total Size ===' && du -sh dist/"
+    "analyze": "npm run build && echo '=== Bundle Analysis ===' && ls -la dist/assets/ && echo '=== Total Size ===' && du -sh dist/",
+    "type-check": "tsc --noEmit",
+    "perf-audit": "npm run build && npm run preview & sleep 5 && lighthouse http://localhost:4173 --output-path=./lighthouse-report.html --view",
+    "size-check": "npm run build && bundlesize"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
