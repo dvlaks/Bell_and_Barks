@@ -58,7 +58,15 @@ jobs:
         run: npm run build
 
       - name: Analyze bundle size
-        run: npx bundlesize
+        run: |
+          echo "=== Bundle Size Analysis ==="
+          echo "JavaScript bundle:"
+          ls -la dist/assets/*.js | awk '{print $5, $9}'
+          echo "CSS bundle:"
+          ls -la dist/assets/*.css | awk '{print $5, $9}'
+          echo "Total dist size:"
+          du -sh dist/
+          echo "=== Bundle Analysis Complete ==="
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

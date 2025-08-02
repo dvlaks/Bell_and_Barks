@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "analyze": "npm run build && echo '=== Bundle Analysis ===' && ls -la dist/assets/ && echo '=== Total Size ===' && du -sh dist/"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
