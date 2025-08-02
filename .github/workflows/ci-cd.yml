@@ -119,11 +119,3 @@ jobs:
         run: |
           echo "Running production health checks"
           # Add health check commands here
-
-      - name: Notify team
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: "Bell & Barks deployed to production successfully! 🚀"
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
