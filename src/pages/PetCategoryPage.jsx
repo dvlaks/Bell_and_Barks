@@ -20,11 +20,9 @@ const PetCategoryPage = () => {
     (category) => category.name.toLowerCase() === categoryName?.toLowerCase()
   );
 
-  if (!currentCategory) {
-    return <div>Category not found</div>;
-  }
-
   useGSAP(() => {
+    if (!currentCategory) return;
+    
     const titleSplit = SplitText.create(".category-hero-title", {
       type: "chars",
     });
@@ -72,6 +70,10 @@ const PetCategoryPage = () => {
       ease: "power1.inOut",
     });
   });
+
+  if (!currentCategory) {
+    return <div>Category not found</div>;
+  }
 
   return (
     <div>

@@ -67,7 +67,7 @@ const PetCategorySlider = () => {
   return (
     <div ref={sliderRef} className="slider-wrapper">
       <div className="pet-categories">
-        {petCategories.map((pet, index) => {
+        {petCategories.map((pet) => {
           // Map each category to its corresponding image
           const getImagePath = (categoryName) => {
             switch(categoryName.toLowerCase()) {
