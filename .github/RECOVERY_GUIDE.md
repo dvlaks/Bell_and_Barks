@@ -5,6 +5,7 @@
 ### **🆘 Quick Recovery Commands**
 
 #### **Option 1: Rollback to Last Stable Version**
+
 ```bash
 # Check available versions
 git tag -l
@@ -17,6 +18,7 @@ npm run dev
 ```
 
 #### **Option 2: Reset to Specific Commit**
+
 ```bash
 # View recent commits
 git log --oneline -10
@@ -28,6 +30,7 @@ npm run dev
 ```
 
 #### **Option 3: Download Release Backup**
+
 ```bash
 # Download from GitHub releases
 wget https://github.com/[org]/bell-and-barks/releases/download/v1.0.0/backup.tar.gz
@@ -41,6 +44,7 @@ npm run dev
 ### **🔧 Recovery Scenarios**
 
 #### **Scenario 1: Broken Development Environment**
+
 ```bash
 # Clean install
 rm -rf node_modules package-lock.json
@@ -50,6 +54,7 @@ npm run dev
 ```
 
 #### **Scenario 2: Corrupted Files**
+
 ```bash
 # Restore specific files
 git checkout HEAD -- [file-name]
@@ -59,6 +64,7 @@ git checkout HEAD -- src/
 ```
 
 #### **Scenario 3: Lost Work (Uncommitted Changes)**
+
 ```bash
 # Check if stash exists
 git stash list

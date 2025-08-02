@@ -17,12 +17,12 @@ const PetCategoryPage = () => {
 
   // Find the current category data
   const currentCategory = petCategories.find(
-    (category) => category.name.toLowerCase() === categoryName?.toLowerCase()
+    (category) => category.name.toLowerCase() === categoryName?.toLowerCase(),
   );
 
   useGSAP(() => {
     if (!currentCategory) return;
-    
+
     const titleSplit = SplitText.create(".category-hero-title", {
       type: "chars",
     });
@@ -43,7 +43,7 @@ const PetCategoryPage = () => {
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
           ease: "circ.out",
         },
-        "-=0.5"
+        "-=0.5",
       )
       .from(
         titleSplit.chars,
@@ -52,7 +52,7 @@ const PetCategoryPage = () => {
           stagger: 0.02,
           ease: "power2.out",
         },
-        "-=0.5"
+        "-=0.5",
       );
 
     const heroTl = gsap.timeline({
@@ -83,8 +83,8 @@ const PetCategoryPage = () => {
           <Link to="/" className="text-2xl font-bold text-primary">
             Bell & Barks
           </Link>
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="px-4 py-2 bg-primary text-white rounded-full hover:bg-primary/80 transition-colors"
           >
             Back to Home
@@ -133,7 +133,7 @@ const PetCategoryPage = () => {
             </div>
 
             <h2>
-              {currentCategory.description} Find your perfect companion today 
+              {currentCategory.description} Find your perfect companion today
               with Bell & Barks premium selection.
             </h2>
 
@@ -154,21 +154,28 @@ const PetCategoryPage = () => {
               </h2>
               <div className="space-y-4">
                 <div className="p-4 bg-white rounded-lg shadow-sm">
-                  <h3 className="font-semibold text-lg mb-2">Perfect Companions</h3>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Perfect Companions
+                  </h3>
                   <p className="text-gray-600">
-                    {currentCategory.name} make wonderful family pets with their loving nature and loyalty.
+                    {currentCategory.name} make wonderful family pets with their
+                    loving nature and loyalty.
                   </p>
                 </div>
                 <div className="p-4 bg-white rounded-lg shadow-sm">
                   <h3 className="font-semibold text-lg mb-2">Easy Care</h3>
                   <p className="text-gray-600">
-                    Our {currentCategory.name.toLowerCase()} come with complete care guides and ongoing support.
+                    Our {currentCategory.name.toLowerCase()} come with complete
+                    care guides and ongoing support.
                   </p>
                 </div>
                 <div className="p-4 bg-white rounded-lg shadow-sm">
-                  <h3 className="font-semibold text-lg mb-2">Health Guaranteed</h3>
+                  <h3 className="font-semibold text-lg mb-2">
+                    Health Guaranteed
+                  </h3>
                   <p className="text-gray-600">
-                    All our pets are health-checked and come with health guarantees.
+                    All our pets are health-checked and come with health
+                    guarantees.
                   </p>
                 </div>
               </div>
@@ -188,43 +195,47 @@ const PetCategoryPage = () => {
       <section className="py-20 px-5 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Available {currentCategory.name}</h2>
+            <h2 className="text-4xl font-bold mb-4">
+              Available {currentCategory.name}
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Browse our selection of beautiful {currentCategory.name.toLowerCase()} 
-              ready for their forever homes. Each pet is carefully selected and loved.
+              Browse our selection of beautiful{" "}
+              {currentCategory.name.toLowerCase()}
+              ready for their forever homes. Each pet is carefully selected and
+              loved.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             {/* Actual pet cards from data */}
-            {currentCategory.pets && currentCategory.pets.map((pet, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow">
-                <div className="aspect-square bg-gray-200 relative overflow-hidden">
-                  <img
-                    src={pet.image}
-                    alt={pet.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+            {currentCategory.pets &&
+              currentCategory.pets.map((pet, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-shadow"
+                >
+                  <div className="aspect-square bg-gray-200 relative overflow-hidden">
+                    <img
+                      src={pet.image}
+                      alt={pet.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{pet.name}</h3>
+                    <p className="text-gray-600 mb-2">{pet.age}</p>
+                    <p className="text-gray-600 mb-3 text-sm">
+                      {pet.description}
+                    </p>
+                    <p className="text-primary font-semibold mb-4">
+                      {pet.price}
+                    </p>
+                    <button className="w-full bg-primary text-white py-2 rounded-full hover:bg-primary/80 transition-colors">
+                      Adopt Me
+                    </button>
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">
-                    {pet.name}
-                  </h3>
-                  <p className="text-gray-600 mb-2">
-                    {pet.age}
-                  </p>
-                  <p className="text-gray-600 mb-3 text-sm">
-                    {pet.description}
-                  </p>
-                  <p className="text-primary font-semibold mb-4">
-                    {pet.price}
-                  </p>
-                  <button className="w-full bg-primary text-white py-2 rounded-full hover:bg-primary/80 transition-colors">
-                    Adopt Me
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>
@@ -234,8 +245,8 @@ const PetCategoryPage = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold mb-6">Ready to Adopt?</h2>
           <p className="text-xl mb-8 opacity-90">
-            Take the first step towards finding your perfect companion. 
-            Our adoption process is simple and designed to ensure the best match.
+            Take the first step towards finding your perfect companion. Our
+            adoption process is simple and designed to ensure the best match.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="px-8 py-3 bg-white text-primary rounded-full font-semibold hover:bg-gray-100 transition-colors">

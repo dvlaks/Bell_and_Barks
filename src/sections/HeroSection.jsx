@@ -33,7 +33,7 @@ const HeroSection = () => {
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
           ease: "circ.out",
         },
-        "-=0.5"
+        "-=0.5",
       )
       .from(
         titleSplit.chars,
@@ -42,7 +42,7 @@ const HeroSection = () => {
           stagger: 0.02,
           ease: "power2.out",
         },
-        "-=0.5"
+        "-=0.5",
       );
 
     const heroTl = gsap.timeline({
@@ -102,7 +102,7 @@ const HeroSection = () => {
           </div>
 
           <h2>
-            Discover unconditional love with Bell & Barks: Find your perfect 
+            Discover unconditional love with Bell & Barks: Find your perfect
             furry friend and experience the joy of pet companionship.
           </h2>
 

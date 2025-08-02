@@ -2,146 +2,146 @@ name: Bell & Barks CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main, develop]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
 
 jobs:
   code-quality:
     runs-on: ubuntu-latest
     name: Code Quality & Security
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Run ESLint
-      run: npm run lint
-      
-    - name: Check code formatting
-      run: npx prettier --check .
-      
-    - name: Security audit
-      run: npm audit --audit-level high
-      
-    - name: Dependency check
-      run: npx depcheck
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Check code formatting
+        run: npx prettier --check .
+
+      - name: Security audit
+        run: npm audit --audit-level high
+
+      - name: Dependency check
+        run: npx depcheck
 
   testing:
     runs-on: ubuntu-latest
     name: Automated Testing
     needs: code-quality
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Run unit tests
-      run: npm run test:coverage
-      
-    - name: Upload coverage reports
-      uses: codecov/codecov-action@v3
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test:coverage
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
     name: Build & Performance
     needs: testing
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Build production
-      run: npm run build
-      
-    - name: Analyze bundle size
-      run: npx bundlesize
-      
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-files
-        path: dist/
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production
+        run: npm run build
+
+      - name: Analyze bundle size
+        run: npx bundlesize
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: dist/
 
   deploy-staging:
     runs-on: ubuntu-latest
     name: Deploy to Staging
     needs: build
     if: github.ref == 'refs/heads/develop'
-    
+
     steps:
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-files
-        path: dist/
-        
-    - name: Deploy to staging
-      run: |
-        echo "Deploying to staging environment"
-        # Add staging deployment commands here
-        
-    - name: Run health checks
-      run: |
-        echo "Running staging health checks"
-        # Add health check commands here
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: dist/
+
+      - name: Deploy to staging
+        run: |
+          echo "Deploying to staging environment"
+          # Add staging deployment commands here
+
+      - name: Run health checks
+        run: |
+          echo "Running staging health checks"
+          # Add health check commands here
 
   deploy-production:
     runs-on: ubuntu-latest
     name: Deploy to Production
     needs: build
     if: github.ref == 'refs/heads/main'
-    
+
     steps:
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-files
-        path: dist/
-        
-    - name: Deploy to production
-      run: |
-        echo "Deploying to production environment"
-        # Add production deployment commands here
-        
-    - name: Run health checks
-      run: |
-        echo "Running production health checks"
-        # Add health check commands here
-        
-    - name: Notify team
-      uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        text: 'Bell & Barks deployed to production successfully! 🚀'
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: dist/
+
+      - name: Deploy to production
+        run: |
+          echo "Deploying to production environment"
+          # Add production deployment commands here
+
+      - name: Run health checks
+        run: |
+          echo "Running production health checks"
+          # Add health check commands here
+
+      - name: Notify team
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: "Bell & Barks deployed to production successfully! 🚀"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}

@@ -52,7 +52,7 @@ const PetCategorySlider = () => {
           xPercent: -22,
           ease: "power1.inOut",
         },
-        "<"
+        "<",
       )
       .to(
         ".second-text-split",
@@ -60,7 +60,7 @@ const PetCategorySlider = () => {
           xPercent: -10,
           ease: "power1.inOut",
         },
-        "<"
+        "<",
       );
   });
 
@@ -70,14 +70,21 @@ const PetCategorySlider = () => {
         {petCategories.map((pet) => {
           // Map each category to its corresponding image
           const getImagePath = (categoryName) => {
-            switch(categoryName.toLowerCase()) {
-              case 'dogs': return '/images/dog.jpg';
-              case 'cats': return '/images/cat.jpg';
-              case 'birds': return '/images/Birds.jpg';
-              case 'fish': return '/images/Fish.jpg';
-              case 'rabbits': return '/images/Rabbit - Copy.jpg';
-              case 'reptiles': return '/images/Reptiles.jpg';
-              default: return '/images/dog.jpg'; // fallback to dog image
+            switch (categoryName.toLowerCase()) {
+              case "dogs":
+                return "/images/dog.jpg";
+              case "cats":
+                return "/images/cat.jpg";
+              case "birds":
+                return "/images/Birds.jpg";
+              case "fish":
+                return "/images/Fish.jpg";
+              case "rabbits":
+                return "/images/Rabbit - Copy.jpg";
+              case "reptiles":
+                return "/images/Reptiles.jpg";
+              default:
+                return "/images/dog.jpg"; // fallback to dog image
             }
           };
 

@@ -41,17 +41,20 @@ You want to ensure our Bell & Barks project is safely stored on GitHub with the 
 ## **🛡️ Backup Levels**
 
 ### **Level 1: Code & Configuration**
+
 - All source code files
 - Configuration files (.env templates)
 - Build and deployment scripts
 - Documentation and README files
 
 ### **Level 2: Assets & Dependencies**
+
 - Static assets (images, videos, fonts)
 - Package.json and lock files
 - Build artifacts and distributions
 
 ### **Level 3: Development Environment**
+
 - Docker configurations
 - Development server settings
 - IDE configurations and settings

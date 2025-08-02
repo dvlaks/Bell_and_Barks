@@ -51,7 +51,7 @@ const FlavorSlider = () => {
           xPercent: -22,
           ease: "power1.inOut",
         },
-        "<"
+        "<",
       )
       .to(
         ".second-text-split",
@@ -59,7 +59,7 @@ const FlavorSlider = () => {
           xPercent: -10,
           ease: "power1.inOut",
         },
-        "<"
+        "<",
       );
   });
 

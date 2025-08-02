@@ -96,7 +96,7 @@ const NutritionSection = () => {
         <div className="flex md:justify-center items-center translate-y-5">
           <div className="md:max-w-xs max-w-md">
             <p className="text-lg md:text-right text-balance font-paragraph">
-              Pets offer countless benefits including unconditional love, 
+              Pets offer countless benefits including unconditional love,
               companionship, and improved mental health for the whole family
             </p>
           </div>

@@ -28,14 +28,14 @@ const TestimonialSection = () => {
         {
           xPercent: 25,
         },
-        "<"
+        "<",
       )
       .to(
         ".testimonials-section .third-title",
         {
           xPercent: -50,
         },
-        "<"
+        "<",
       );
 
     const pinTl = gsap.timeline({

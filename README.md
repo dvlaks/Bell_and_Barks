@@ -31,6 +31,7 @@ bell-and-barks/
 ## 🎯 **Features**
 
 ### **Core Platform Features**
+
 - Interactive pet category browsing (Dogs, Cats, Birds, Fish, Rabbits, Reptiles)
 - Individual pet profiles with detailed information
 - Responsive design for all devices
@@ -38,6 +39,7 @@ bell-and-barks/
 - Professional navigation and user experience
 
 ### **Pet Categories**
+
 - **Dogs**: Loyal companions for every family ($200 - $2,500)
 - **Cats**: Independent and loving feline friends ($100 - $1,800)
 - **Birds**: Colorful and intelligent avian companions ($50 - $3,000)
@@ -48,11 +50,13 @@ bell-and-barks/
 ## 🚀 **Getting Started**
 
 ### **Prerequisites**
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn
 - Git
 
 ### **Installation**
+
 ```bash
 git clone https://github.com/[your-org]/bell-and-barks.git
 cd bell-and-barks
@@ -61,6 +65,7 @@ npm run dev
 ```
 
 ### **Development Server**
+
 ```bash
 npm run dev          # Start development server
 npm run build        # Build for production
@@ -71,6 +76,7 @@ npm run lint         # Run ESLint
 ## 🔄 **Development Workflow**
 
 We follow GitFlow branching strategy:
+
 - `main` - Production-ready code
 - `develop` - Integration branch for features
 - `feature/*` - Individual feature development

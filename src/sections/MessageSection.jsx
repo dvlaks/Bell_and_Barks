@@ -20,10 +20,10 @@ const MessageSection = () => {
       const splitText = new SplitText(span, { type: "chars" });
       gsap.fromTo(
         splitText.chars,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 100,
-          rotation: -15 
+          rotation: -15,
         },
         {
           opacity: 1,
@@ -38,7 +38,7 @@ const MessageSection = () => {
             end: "bottom 15%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -47,10 +47,10 @@ const MessageSection = () => {
       const splitText = new SplitText(span, { type: "chars" });
       gsap.fromTo(
         splitText.chars,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           scale: 0,
-          rotation: 360 
+          rotation: 360,
         },
         {
           opacity: 1,
@@ -65,7 +65,7 @@ const MessageSection = () => {
             end: "bottom 15%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -74,10 +74,10 @@ const MessageSection = () => {
       const splitText = new SplitText(span, { type: "words" });
       gsap.fromTo(
         splitText.words,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 50,
-          skewY: 10
+          skewY: 10,
         },
         {
           opacity: 1,
@@ -92,21 +92,22 @@ const MessageSection = () => {
             end: "bottom 15%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
     // Crazy hover animations
     const section = sectionRef.current;
-    
+
     // Section hover effect
-    section.addEventListener('mouseenter', () => {
+    section.addEventListener("mouseenter", () => {
       gsap.to(section, {
-        background: "linear-gradient(135deg, #fef7ed 0%, #fed7aa 50%, #fdba74 100%)",
+        background:
+          "linear-gradient(135deg, #fef7ed 0%, #fed7aa 50%, #fdba74 100%)",
         duration: 0.8,
-        ease: "power2.inOut"
+        ease: "power2.inOut",
       });
-      
+
       // Floating particles effect
       gsap.to(".floating-element", {
         y: "random(-20, 20)",
@@ -116,58 +117,59 @@ const MessageSection = () => {
         stagger: 0.1,
         repeat: -1,
         yoyo: true,
-        ease: "sine.inOut"
+        ease: "sine.inOut",
       });
     });
 
-    section.addEventListener('mouseleave', () => {
+    section.addEventListener("mouseleave", () => {
       gsap.to(section, {
         background: "linear-gradient(135deg, #fef7ed 0%, #fef7ed 100%)",
         duration: 0.8,
-        ease: "power2.inOut"
+        ease: "power2.inOut",
       });
-      
+
       gsap.killTweensOf(".floating-element");
       gsap.to(".floating-element", {
         y: 0,
         x: 0,
         rotation: 0,
         duration: 0.5,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     });
 
     // Title hover effect
     if (titleRef.current) {
-      titleRef.current.addEventListener('mouseenter', () => {
-        const chars = titleRef.current.querySelectorAll('.msg-text span');
+      titleRef.current.addEventListener("mouseenter", () => {
+        const chars = titleRef.current.querySelectorAll(".msg-text span");
         gsap.to(chars, {
           scale: 1.2,
           color: "#ea580c",
           textShadow: "0 10px 20px rgba(234, 88, 12, 0.3)",
           duration: 0.3,
           stagger: 0.02,
-          ease: "back.out(1.7)"
+          ease: "back.out(1.7)",
         });
       });
-      
-      titleRef.current.addEventListener('mouseleave', () => {
-        const chars = titleRef.current.querySelectorAll('.msg-text span');
+
+      titleRef.current.addEventListener("mouseleave", () => {
+        const chars = titleRef.current.querySelectorAll(".msg-text span");
         gsap.to(chars, {
           scale: 1,
           color: "#92400e",
           textShadow: "none",
           duration: 0.3,
           stagger: 0.02,
-          ease: "power2.out"
+          ease: "power2.out",
         });
       });
     }
 
     // Subtitle hover effect
     if (subtitleRef.current) {
-      subtitleRef.current.addEventListener('mouseenter', () => {
-        const chars = subtitleRef.current.querySelectorAll('.msg-text-two span');
+      subtitleRef.current.addEventListener("mouseenter", () => {
+        const chars =
+          subtitleRef.current.querySelectorAll(".msg-text-two span");
         gsap.to(chars, {
           y: -10,
           rotation: "random(-5, 5)",
@@ -175,12 +177,13 @@ const MessageSection = () => {
           color: "#dc2626",
           duration: 0.4,
           stagger: 0.03,
-          ease: "elastic.out(1, 0.6)"
+          ease: "elastic.out(1, 0.6)",
         });
       });
-      
-      subtitleRef.current.addEventListener('mouseleave', () => {
-        const chars = subtitleRef.current.querySelectorAll('.msg-text-two span');
+
+      subtitleRef.current.addEventListener("mouseleave", () => {
+        const chars =
+          subtitleRef.current.querySelectorAll(".msg-text-two span");
         gsap.to(chars, {
           y: 0,
           rotation: 0,
@@ -188,61 +191,63 @@ const MessageSection = () => {
           color: "#ea580c",
           duration: 0.4,
           stagger: 0.03,
-          ease: "power2.out"
+          ease: "power2.out",
         });
       });
     }
 
     // Description hover effect
     if (descriptionRef.current) {
-      descriptionRef.current.addEventListener('mouseenter', () => {
-        const words = descriptionRef.current.querySelectorAll('.desc-text span');
+      descriptionRef.current.addEventListener("mouseenter", () => {
+        const words =
+          descriptionRef.current.querySelectorAll(".desc-text span");
         gsap.to(words, {
           scale: 1.05,
           color: "#7c2d12",
           duration: 0.3,
           stagger: 0.02,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-        
+
         gsap.to(descriptionRef.current, {
           background: "rgba(255, 255, 255, 0.8)",
           padding: "2rem",
           borderRadius: "1rem",
           boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
           duration: 0.5,
-          ease: "power2.out"
+          ease: "power2.out",
         });
       });
-      
-      descriptionRef.current.addEventListener('mouseleave', () => {
-        const words = descriptionRef.current.querySelectorAll('.desc-text span');
+
+      descriptionRef.current.addEventListener("mouseleave", () => {
+        const words =
+          descriptionRef.current.querySelectorAll(".desc-text span");
         gsap.to(words, {
           scale: 1,
           color: "#92400e",
           duration: 0.3,
           stagger: 0.02,
-          ease: "power2.out"
+          ease: "power2.out",
         });
-        
+
         gsap.to(descriptionRef.current, {
           background: "transparent",
           padding: "0",
           borderRadius: "0",
           boxShadow: "none",
           duration: 0.5,
-          ease: "power2.out"
+          ease: "power2.out",
         });
       });
     }
   });
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden transition-all duration-1000"
       style={{
-        background: "linear-gradient(135deg, #fef7ed 0%, #fef7ed 100%)"
+        background: "linear-gradient(135deg, #fef7ed 0%, #fef7ed 100%)",
       }}
     >
       {/* Floating decorative elements */}
@@ -258,9 +263,8 @@ const MessageSection = () => {
       {/* Main content - Centered properly */}
       <div className="w-full flex justify-center items-center px-5 md:px-14 z-10">
         <div className="w-full max-w-6xl text-center space-y-12">
-          
           {/* Main Title */}
-          <div 
+          <div
             ref={titleRef}
             className="general-title-big cursor-pointer transform transition-transform duration-300 hover:scale-105"
           >
@@ -270,7 +274,7 @@ const MessageSection = () => {
           </div>
 
           {/* Subtitle */}
-          <div 
+          <div
             ref={subtitleRef}
             className="cursor-pointer transform transition-transform duration-300 hover:scale-105"
           >
@@ -281,14 +285,14 @@ const MessageSection = () => {
 
           {/* Description */}
           <div className="flex justify-center mt-16">
-            <div 
+            <div
               ref={descriptionRef}
               className="max-w-2xl cursor-pointer transform transition-all duration-500"
             >
               <p className="desc-text text-lg md:text-xl leading-relaxed text-amber-800 font-medium">
-                Unleash your love for pets and embrace the joy of companionship with
-                Bell & Barks, where you are one adoption away from pure happiness and
-                unconditional love.
+                Unleash your love for pets and embrace the joy of companionship
+                with Bell & Barks, where you are one adoption away from pure
+                happiness and unconditional love.
               </p>
             </div>
           </div>
