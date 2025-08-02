@@ -1,0 +1,10 @@
+{
+  "ignores": [
+    "tailwindcss"
+  ],
+  "skip-missing": true,
+  "ignoreDirs": [
+    "dist",
+    "node_modules"
+  ]
+}
