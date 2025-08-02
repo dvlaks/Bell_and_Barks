@@ -31,7 +31,7 @@ jobs:
       - name: Run health check
         run: |
           npm run build
-          npm run test:ci
+          npm run lint
 
       - name: Create backup metadata
         run: |

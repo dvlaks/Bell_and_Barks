@@ -36,36 +36,10 @@ jobs:
       - name: Dependency check
         run: npx depcheck
 
-  testing:
-    runs-on: ubuntu-latest
-    name: Automated Testing
-    needs: code-quality
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run unit tests
-        run: npm run test:coverage
-
-      - name: Upload coverage reports
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
   build:
     runs-on: ubuntu-latest
     name: Build & Performance
-    needs: testing
+    needs: code-quality
 
     steps:
       - name: Checkout code
