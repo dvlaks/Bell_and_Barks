@@ -4,7 +4,6 @@ import { SplitText } from "gsap/all";
 import { useMediaQuery } from "react-responsive";
 import { useParams, Link } from "react-router-dom";
 import { petCategories } from "../constants";
-import SEOHead from "../components/SEOHead";
 
 const PetCategoryPage = () => {
   const { categoryName } = useParams();
@@ -78,11 +77,6 @@ const PetCategoryPage = () => {
 
   return (
     <div>
-      <SEOHead 
-        title={`${currentCategory.name} for Adoption - Bell & Barks`}
-        description={`${currentCategory.description} Browse our selection of ${currentCategory.name.toLowerCase()} available for adoption. Price range: ${currentCategory.priceRange}.`}
-        keywords={`${currentCategory.name.toLowerCase()} adoption, adopt ${currentCategory.name.toLowerCase()}, ${currentCategory.name.toLowerCase()} for sale, pet adoption`}
-      />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md px-5 py-3">
         <div className="flex justify-between items-center">
