@@ -26,7 +26,7 @@ jobs:
         run: npm run build
 
       - name: Wait for server and run Lighthouse audit
-        uses: treosh/lighthouse-ci-action@v9
+        uses: treosh/lighthouse-ci-action@v10
         with:
           urls: |
             http://localhost:4173
@@ -35,5 +35,3 @@ jobs:
           configPath: "./.lighthouserc.json"
           uploadArtifacts: true
           temporaryPublicStorage: true
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
