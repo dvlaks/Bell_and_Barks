@@ -14,7 +14,7 @@ class ErrorBoundary extends Component {
   componentDidCatch(error, errorInfo) {
     // Log error details
     console.error("ErrorBoundary caught an error:", error, errorInfo);
-    
+
     this.setState({
       error: error,
       errorInfo: errorInfo,
@@ -51,7 +51,8 @@ class ErrorBoundary extends Component {
                 Oops! Something went wrong
               </h1>
               <p className="text-gray-600 mb-6">
-                We're sorry, but something unexpected happened. Our team has been notified.
+                We're sorry, but something unexpected happened. Our team has
+                been notified.
               </p>
             </div>
 
@@ -62,7 +63,7 @@ class ErrorBoundary extends Component {
               >
                 Reload Page
               </button>
-              
+
               <button
                 onClick={() => (window.location.href = "/")}
                 className="w-full border-2 border-dark-brown text-dark-brown py-3 px-6 rounded-full font-semibold hover:bg-dark-brown hover:text-white transition-colors"
@@ -78,7 +79,8 @@ class ErrorBoundary extends Component {
                 </summary>
                 <div className="mt-2 p-4 bg-gray-100 rounded text-xs font-mono text-gray-800 overflow-auto max-h-40">
                   <div className="mb-2">
-                    <strong>Error:</strong> {this.state.error && this.state.error.toString()}
+                    <strong>Error:</strong>{" "}
+                    {this.state.error && this.state.error.toString()}
                   </div>
                   <div>
                     <strong>Stack Trace:</strong>

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const SEOHead = ({ 
+const SEOHead = ({
   title = "Bell & Barks - Professional Pet Adoption Platform",
   description = "Find your perfect companion at Bell & Barks. Professional pet adoption platform connecting loving families with dogs, cats, birds, fish, rabbits, and reptiles.",
   keywords = "pet adoption, dogs, cats, birds, fish, rabbits, reptiles, animal rescue, pet care",
   image = "/images/logo.png",
-  url
+  url,
 }) => {
   const location = useLocation();
   const currentUrl = url || `${window.location.origin}${location.pathname}`;
@@ -17,9 +17,10 @@ const SEOHead = ({
 
     // Update meta tags
     const updateMetaTag = (name, content) => {
-      let meta = document.querySelector(`meta[name="${name}"]`) || 
-                 document.querySelector(`meta[property="${name}"]`);
-      
+      let meta =
+        document.querySelector(`meta[name="${name}"]`) ||
+        document.querySelector(`meta[property="${name}"]`);
+
       if (!meta) {
         meta = document.createElement("meta");
         if (name.startsWith("og:") || name.startsWith("twitter:")) {
@@ -63,7 +64,6 @@ const SEOHead = ({
       document.head.appendChild(canonical);
     }
     canonical.setAttribute("href", currentUrl);
-
   }, [title, description, keywords, image, currentUrl]);
 
   return null; // This component doesn't render anything

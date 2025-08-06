@@ -66,13 +66,13 @@ const NutritionSection = () => {
 
   return (
     <section className="nutrition-section">
-      <img 
-        src="/images/pet-Friend.jpg" 
-        alt="Happy pets with families" 
+      <img
+        src="/images/pet-Friend.jpg"
+        alt="Happy pets with families"
         className="w-full h-full absolute inset-0 object-cover"
         style={{
-          minHeight: '100vh',
-          objectPosition: 'center center'
+          minHeight: "100vh",
+          objectPosition: "center center",
         }}
       />
 
