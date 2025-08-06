@@ -33,115 +33,107 @@ export const preloadCriticalImages = async () => {
 
 // Resource optimization
 export const optimizeFont = () => {
-  // Preload critical fonts
-  const fontLink = document.createElement('link');
-  fontLink.rel = 'preload';
-  fontLink.href = '/fonts/ProximaNova-Regular.otf';
-  fontLink.as = 'font';
-  fontLink.type = 'font/otf';
-  fontLink.crossOrigin = 'anonymous';
-  document.head.appendChild(fontLink);
+  if (typeof document !== 'undefined') {
+    // Preload critical fonts
+    const fontLink = document.createElement('link');
+    fontLink.rel = 'preload';
+    fontLink.href = '/fonts/ProximaNova-Regular.otf';
+    fontLink.as = 'font';
+    fontLink.type = 'font/otf';
+    fontLink.crossOrigin = 'anonymous';
+    document.head.appendChild(fontLink);
+  }
 };
 
 // Performance monitoring
 export const performanceMonitor = {
   measureLCP: () => {
-    new PerformanceObserver((entryList) => {
-      const entries = entryList.getEntries();
-      const lastEntry = entries[entries.length - 1];
-      console.log('LCP:', lastEntry.startTime);
-    }).observe({entryTypes: ['largest-contentful-paint']});
+    if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+      try {
+        new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          console.log('LCP:', lastEntry.startTime);
+        }).observe({ entryTypes: ['largest-contentful-paint'] });
+      } catch (e) {
+        console.warn('LCP monitoring not supported');
+      }
+    }
   },
-
+  
   measureFID: () => {
-    new PerformanceObserver((entryList) => {
-      const entries = entryList.getEntries();
-      entries.forEach((entry) => {
-        console.log('FID:', entry.processingStart - entry.startTime);
-      });
-    }).observe({entryTypes: ['first-input']});
+    if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+      try {
+        new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          entries.forEach(entry => {
+            console.log('FID:', entry.processingStart - entry.startTime);
+          });
+        }).observe({ entryTypes: ['first-input'] });
+      } catch (e) {
+        console.warn('FID monitoring not supported');
+      }
+    }
   },
-
+  
   measureCLS: () => {
-    let clsValue = 0;
-    new PerformanceObserver((entryList) => {
-      const entries = entryList.getEntries();
-      entries.forEach((entry) => {
-        if (!entry.hadRecentInput) {
-          clsValue += entry.value;
+    if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+      try {
+        let clsValue = 0;
+        new PerformanceObserver((entryList) => {
+          for (const entry of entryList.getEntries()) {
+            if (!entry.hadRecentInput) {
+              clsValue += entry.value;
+            }
+          }
           console.log('CLS:', clsValue);
-        }
-      });
-    }).observe({entryTypes: ['layout-shift']});
+        }).observe({ entryTypes: ['layout-shift'] });
+      } catch (e) {
+        console.warn('CLS monitoring not supported');
+      }
+    }
   }
 };
 
 // Initialize performance monitoring
 export const initPerformanceMonitoring = () => {
   if (typeof window !== 'undefined') {
-    performanceMonitor.measureLCP();
-    performanceMonitor.measureFID();
-    performanceMonitor.measureCLS();
-    
-    // Preload critical resources
-    preloadCriticalImages();
-    optimizeFont();
+    try {
+      performanceMonitor.measureLCP();
+      performanceMonitor.measureFID();
+      performanceMonitor.measureCLS();
+      
+      // Preload critical resources
+      preloadCriticalImages();
+      optimizeFont();
+      
+      console.log('Performance monitoring initialized');
+    } catch (error) {
+      console.warn('Performance monitoring failed to initialize:', error);
+    }
   }
 };
 
-// Image format detection and optimization
-export const getOptimizedImageSrc = (src, format = 'webp') => {
-  if (!src) return src;
-  
-  // Check browser support for modern formats
-  const supportsWebP = () => {
-    const canvas = document.createElement('canvas');
-    return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
-  };
-  
-  const supportsAVIF = () => {
-    const canvas = document.createElement('canvas');
-    return canvas.toDataURL('image/avif').indexOf('data:image/avif') === 0;
-  };
-  
-  // Return optimized format if supported
-  if (format === 'avif' && supportsAVIF()) {
-    return src.replace(/\.(jpg|jpeg|png)$/i, '.avif');
-  } else if (format === 'webp' && supportsWebP()) {
-    return src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+// Network information for adaptive loading
+export const getNetworkInfo = () => {
+  if (typeof navigator !== 'undefined' && 'connection' in navigator) {
+    const conn = navigator.connection;
+    return {
+      effectiveType: conn.effectiveType,
+      downlink: conn.downlink,
+      rtt: conn.rtt,
+      saveData: conn.saveData
+    };
   }
-  
-  return src;
+  return null;
 };
 
-// Bundle size analyzer helper
-export const analyzeBundleSize = () => {
-  if (process.env.NODE_ENV === 'development') {
-    const scripts = document.querySelectorAll('script[src]');
-    let totalSize = 0;
-    
-    scripts.forEach(script => {
-      fetch(script.src)
-        .then(response => response.blob())
-        .then(blob => {
-          totalSize += blob.size;
-          console.log(`Script ${script.src}: ${(blob.size / 1024).toFixed(2)}KB`);
-          console.log(`Total bundle size: ${(totalSize / 1024).toFixed(2)}KB`);
-        })
-        .catch(console.error);
-    });
-  }
-};
-
-export default {
-  LazyPetCategoryPage,
-  LazyTestimonialSection,
-  LazyFooterSection,
-  preloadImage,
-  preloadCriticalImages,
-  optimizeFont,
-  performanceMonitor,
-  initPerformanceMonitoring,
-  getOptimizedImageSrc,
-  analyzeBundleSize
+// Adaptive image loading based on network
+export const shouldLoadHighQuality = () => {
+  const networkInfo = getNetworkInfo();
+  if (!networkInfo) return true; // Default to high quality
+  
+  return !networkInfo.saveData && 
+         networkInfo.effectiveType !== 'slow-2g' && 
+         networkInfo.effectiveType !== '2g';
 };
