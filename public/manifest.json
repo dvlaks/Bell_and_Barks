@@ -7,18 +7,37 @@
   "background_color": "#fef7ed",
   "theme_color": "#ea580c",
   "orientation": "portrait-primary",
+  "scope": "/",
   "icons": [
+    {
+      "src": "/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
     {
       "src": "/images/logo.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/images/logo.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
   "categories": ["lifestyle", "shopping"],
@@ -29,6 +48,22 @@
       "sizes": "1280x720",
       "type": "image/png",
       "label": "Bell & Barks Homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Find Dogs",
+      "short_name": "Dogs",
+      "description": "Browse available dogs for adoption",
+      "url": "/pets/dogs",
+      "icons": [{ "src": "/icon-192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Find Cats",
+      "short_name": "Cats", 
+      "description": "Browse available cats for adoption",
+      "url": "/pets/cats",
+      "icons": [{ "src": "/icon-192.svg", "sizes": "192x192" }]
     }
   ]
 }

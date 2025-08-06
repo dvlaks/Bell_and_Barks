@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { useMediaQuery } from "react-responsive";
+import OptimizedImage from "../components/OptimizedImage";
 
 const HeroSection = () => {
   const isMobile = useMediaQuery({
@@ -67,13 +68,21 @@ const HeroSection = () => {
         {isTablet ? (
           <>
             {isMobile && (
-              <img
+              <OptimizedImage
                 src="/images/hero-bg.png"
+                alt="Bell & Barks hero background - Find your perfect pet companion"
+                width={1920}
+                height={1080}
+                priority={true}
                 className="absolute bottom-40 size-full object-cover"
               />
             )}
-            <img
+            <OptimizedImage
               src="/images/hero-img.png"
+              alt="Happy pets waiting for adoption at Bell & Barks"
+              width={800}
+              height={600}
+              priority={true}
               className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto"
             />
           </>
@@ -83,7 +92,12 @@ const HeroSection = () => {
             autoPlay
             muted
             playsInline
+            loop
+            preload="metadata"
+            width="1920"
+            height="1080"
             className="absolute inset-0 w-full h-full object-cover"
+            aria-label="Background video of happy pets"
           />
         )}
         <div className="hero-content opacity-0">

@@ -2,8 +2,11 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "ProximaNova, sans-serif";
-  src: url("/fonts/ProximaNova-Regular.otf");
+  font-family: "ProximaNova";
+  src: url("/fonts/ProximaNova-Regular.otf") format("opentype");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
 }
 
 @theme {
