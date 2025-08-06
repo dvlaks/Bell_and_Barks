@@ -1,0 +1,34 @@
+{
+  "name": "Bell & Barks - Pet Adoption Platform",
+  "short_name": "Bell & Barks",
+  "description": "Find your perfect companion at Bell & Barks. Adopt healthy, happy pets from trusted sources.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fef7ed",
+  "theme_color": "#ea580c",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "shopping"],
+  "lang": "en",
+  "screenshots": [
+    {
+      "src": "/images/hero-img.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Bell & Barks Homepage"
+    }
+  ]
+}

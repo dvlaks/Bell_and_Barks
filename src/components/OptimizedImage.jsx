@@ -30,8 +30,10 @@ const OptimizedImage = ({
 
       <img
         src={hasError ? fallback : src}
-        alt={alt}
+        alt={alt || "Bell & Barks pet image"}
         loading={loading}
+        width="auto"
+        height="auto"
         className={`transition-opacity duration-300 ${
           isLoading ? "opacity-0" : "opacity-100"
         } ${className}`}
