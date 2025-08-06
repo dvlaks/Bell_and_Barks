@@ -33,5 +33,5 @@ jobs:
             http://localhost:4173/pets/dogs
             http://localhost:4173/pets/cats
           configPath: "./.lighthouserc.json"
-          uploadArtifacts: true
+          uploadArtifacts: false
           temporaryPublicStorage: true
