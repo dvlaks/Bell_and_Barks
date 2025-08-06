@@ -11,7 +11,12 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "analyze": "npm run build && echo '=== Bundle Analysis ===' && ls -la dist/assets/ && echo '=== Total Size ===' && du -sh dist/"
+    "analyze": "npm run build && echo '=== Bundle Analysis ===' && ls -la dist/assets/ && echo '=== Total Size ===' && du -sh dist/",
+    "optimize:images": "node scripts/optimize-images.js",
+    "optimize:videos": "node scripts/optimize-videos.js",
+    "optimize:all": "npm run optimize:images && npm run optimize:videos",
+    "performance:audit": "npm run build && npm run preview -- --port 4173 &",
+    "performance:install": "npm install --save-dev imagemin imagemin-webp imagemin-mozjpeg imagemin-pngquant sharp-cli"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
